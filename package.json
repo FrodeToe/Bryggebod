@@ -3,26 +3,18 @@
   "version": "1.0.0",
   "description": "BIM viewer using Autodesk Forge and Autodesk 360",
   "author": {
-    "name": "Torjus Sandviken"
+    "name": "Frode Tørresdal"
   },
-  "contributors": [
-    {
-      "name": "Fredrik Larsen"
-    },
-    {
-      "name": "Frode Tørresdal"
-    }
-  ],
   "private": true,
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/torjuss/isyviewer.git"
+    "url": "git+https://github.com/FrodeToe/Bryggebod.git"
   },
   "bugs": {
-    "url": "https://github.com/torjuss/isyviewer/issues"
+    "url": "https://github.com/FrodeToe/Bryggebod/issues"
   },
-  "homepage": "https://github.com/torjuss/isyviewer#readme",
+  "homepage": "https://github.com/FrodeToe/Bryggebod#readme",
   "main": "start.js",
   "scripts": {
     "build": "webpack",
@@ -30,7 +22,7 @@
     "test": "echo \\\"No tests have been specified yet\\\" && exit 1"
   },
   "engines": {
-    "node": "7.2.0"
+    "node": "6.9.1"
   },
   "dependencies": {
     "body-parser": "1.15.x",
