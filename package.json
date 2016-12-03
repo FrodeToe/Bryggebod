@@ -22,7 +22,7 @@
     "test": "echo \\\"No tests have been specified yet\\\" && exit 1"
   },
   "engines": {
-    "node": "6.9.1"
+    "node": "4.4.7"
   },
   "dependencies": {
     "body-parser": "1.15.x",
