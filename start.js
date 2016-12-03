@@ -17,7 +17,7 @@
 /////////////////////////////////////////////////////////////////////
 
 'use strict';
-
+console.log('Starting at ');
 var app = require('./server/server');
 
 // start server
