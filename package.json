@@ -1,0 +1,51 @@
+{
+  "name": "isyviewer",
+  "version": "1.0.0",
+  "description": "BIM viewer using Autodesk Forge and Autodesk 360",
+  "author": {
+    "name": "Torjus Sandviken"
+  },
+  "contributors": [
+    {
+      "name": "Fredrik Larsen"
+    },
+    {
+      "name": "Frode Tørresdal"
+    }
+  ],
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torjuss/isyviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/torjuss/isyviewer/issues"
+  },
+  "homepage": "https://github.com/torjuss/isyviewer#readme",
+  "main": "start.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "node start.js",
+    "test": "echo \\\"No tests have been specified yet\\\" && exit 1"
+  },
+  "engines": {
+    "node": "7.2.0"
+  },
+  "dependencies": {
+    "body-parser": "1.15.x",
+    "bootstrap": "3.3.x",
+    "cookie-parser": "1.4.x",
+    "express": "4.14.x",
+    "express-session": "1.14.x",
+    "forge-data-management": "2.0.x",
+    "forge-model-derivative": "2.0.x",
+    "forge-oauth2": "1.0.x",
+    "forge-oss": "2.0.x",
+    "jquery": "3.1.x",
+    "jstree": "3.3.x",
+    "moment": "2.17.x",
+    "request": "2.79.x"
+  },
+  "devDependencies": {}
+}
