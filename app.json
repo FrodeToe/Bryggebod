@@ -1,7 +1,7 @@
 {
-  "name": "isyviewer",
+  "name": "bryggebod",
   "description": "BIM viewer using Autodesk Forge and Autodesk 360",
-  "repository": "https://github.com/torjuss/isyviewer",
+  "repository": "https://github.com/frodetoe/bryggebod",
   "logo": "",
   "keywords": [
     "autodesk",
@@ -17,9 +17,9 @@
     },
     "FORGE_CALLBACK_URL": {
       "description": "Callback URL of your Forge app, required for 3-legged OAuth",
-      "value": "https://isyviewer.herokuapp.com/api/forge/callback/oauth"
+      "value": "https://http://bryggebod.azurewebsites.net/api/forge/callback/oauth"
     }
   },
-  "website": "https://isyviewer.herokuapp.com/",
+  "website": "http://bryggebod.azurewebsites.net/",
   "success_url": "/"
 }
