@@ -145,6 +145,6 @@ Bryggebod.Extension.Toolbar.prototype.constructor =
   Bryggebod.Extension.Toolbar;
  
 Autodesk.Viewing.theExtensionManager.registerExtension(
-  'MyAwesomeExtension',
+  'buttonExtension',
   Bryggebod.Extension.Toolbar
 );
