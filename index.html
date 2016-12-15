@@ -20,8 +20,10 @@
 
     <!-- Autodesk Forge Viewer -->
     <link href="./Model/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="./Model/three.min.js"></script>
     <script src="./Model/viewer3D.min.js"></script>
+    <script src="my-awesome-extension.js"></script>
 
     <!-- Our scripts -->
     <style>
@@ -109,18 +111,28 @@
             //var options ={ 'document': '', 'env': 'AutodeskProduction' } ;
             var options ={ 'docid': docs [0].path, env: 'Local' } ;
 
-            //oViewer =new Autodesk.Viewing.Viewer3D ($("#viewer") [0], {}) ; // No toolbar
-            oViewer =new Autodesk.Viewing.Private.GuiViewer3D ($("#viewer") [0], {}) ; // With toolbar
+            var config3d = {
+            extensions: ['MyAwesomeExtension']
+            };
+
+          //  oViewer =new Autodesk.Viewing.Viewer3D ($("#viewer") [0], config3d) ; // No toolbar
+            oViewer =new Autodesk.Viewing.Private.GuiViewer3D ($("#viewer") [0], config3d) ; // With toolbar
+           
             Autodesk.Viewing.Initializer (options, function () {
-				oViewer.initialize () ;
-                oViewer.addEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function (event) {
+				//oViewer.initialize () ;
+     /*           oViewer.addEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function (event) {
                     //oViewer.removeEventListener (Autodesk.Viewing.GEOMETRY_LOADED_EVENT, arguments.callee) ;
                     oViewer.fitToView (true) ;
                     setTimeout (function () { oViewer.autocam.setHomeViewFrom (oViewer.navigation.getCamera ()) ; }, 1000) ;
-                }) ;
-				oViewer.loadModel (options.docid) ;
-
-				for ( var i =0 ; i < docs.length ; i++ ) {
+                }) ;*/
+			//oViewer.loadModel (options.docid) ;
+            oViewer.start(options.docid);
+           
+          //  oViewer.registerContextMenuCallback('MyAwesomeExtension',MyAwesomeExtension);
+            
+            
+    //    );
+			/*	for ( var i =0 ; i < docs.length ; i++ ) {
 					var r =$('<div><button id="view_' + i + '">'
 						+ docs [i].name
 						+ '<div><img id="img__' + i + '" src="' + docs [i].path + '.png"></div></button></div>') ;
@@ -136,9 +148,12 @@
 						var i =parseInt (e.target.id.substring (5)) ;
 						oViewer.loadModel (docs [i].path) ;
 					}) ;
-				}
+				}*/
 			}) ;
+
+            
         }) ;
+
     </script>
 </head>
 
