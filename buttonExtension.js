@@ -60,7 +60,18 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
  
       // Only create a toggler for our button if it has an unclick operation
  
-      button.onClick = function () { alert('SKÅÅÅÅL!'); };
+      button.onClick = function () { 
+        //alert('SKÅL!'); 
+        if (oViewer.getSelection().length > 0) {
+           var objSelected = oViewer.getSelection()[0];
+           oViewer.getProperties(objSelected, propCallback, propErrorCallback);
+           
+        }
+        else
+        {
+            alert('Nothing Selected');
+        }
+      };
  
       ctrlGroup.addControl(button);
 
@@ -98,6 +109,53 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
  
     setTimeout(function () { toolbar.centerToolBar(); }, 100);
   }
+
+  function propCallback(data) {
+
+    // Check if we got properties. 
+    if ((data.properties == null) || (data.properties.length == 0)) {
+        str = "no properties";
+        return;
+    }
+
+    // Iterate over properties and put together 
+    // a list of property's name/value pairs to diplay. 
+    
+    var propSize = data.properties.length;
+
+    var type = '';
+    var area = '';
+    var slope = '';
+    var length = '';
+    for (var i = 0; i < propSize; i++) {
+        var obj = data.properties[i];
+        if(obj.displayName === 'Type Name')
+          type = obj.displayValue;
+        if(obj.displayName == 'Area')
+          area = obj.displayValue;
+        if(obj.displayName == 'Length')
+          length = obj.displayValue;
+        if(obj.displayName == 'Slope')
+          slope = obj.displayValue;
+      //  str += obj.displayName + ": " + obj.displayValue + "\n";
+    }
+
+    var str = 'Type: ';
+    if(type != '')
+      str += type;
+    if(area != '')
+      str += '\nArea: ' + area.toFixed(2);
+    if(length != '')
+      str += '\nLength: ' + length.toFixed(2);
+    if(slope != '')
+      str += '\nSlope: ' + slope.toFixed(2);
+    alert(str);
+}
+
+function propErrorCallback(data) {
+    var txtArea = document.getElementById("TextAreaResult");
+    txtArea.value = "error in getProperties.";
+}
  
   function deleteToolbar() {
     $('#divToolbar').remove();
