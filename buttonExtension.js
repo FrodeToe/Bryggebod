@@ -56,7 +56,7 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
  
       // Set the tooltip
  
-      button.setToolTip('Press to skål');
+      button.setToolTip('Info');
  
       // Only create a toggler for our button if it has an unclick operation
  
