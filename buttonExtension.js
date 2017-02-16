@@ -123,6 +123,8 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
     var y =  parseInt(event.beta) ;
     var z =  parseInt(event.gamma) ;
 
+    alert('pos = ' + x + ' ' + y + ' ' + z );
+
     // display the value
     var thistext = x + ', '
         + y + ', '
