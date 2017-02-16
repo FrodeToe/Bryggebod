@@ -125,7 +125,19 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
 
 var camera = oViewer.getCamera();
 
-    oViewer.setViewFromArray([
+
+  camera.position = new THREE.Vector3(x, y, z);
+  //oViewer.navigation.setWorldUpVector(camera.up);
+ 
+  // This performs a smooth view transition (we might also use
+  // setView() to get there more directly)
+ 
+  oViewer.utilities.transitionView(
+    camera.position, camera.target,
+    camera.fov, camera.up, camera.up, true, camera.target
+  );
+
+   /* oViewer.setViewFromArray([
     camera.position.x,
     camera.position.y,
     camera.position.z,
