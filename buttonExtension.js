@@ -123,7 +123,22 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
     var y =  parseInt(event.beta) ;
     var z =  parseInt(event.gamma) ;
 
-    var camera = oViewer.getCamera();
+    oViewer.setViewFromArray([
+    oViewer.getCamera().position.x,
+    oViewer.getCamera().position.y,
+    oViewer.getCamera().position.z,
+    x,
+    y,
+    z,
+    oViewer.getCamera().up.x,
+    oViewer.getCamera().up.y,
+    oViewer.getCamera().up.z,
+    oViewer.getCamera().aspect,
+    oViewer.getCamera().fov,
+    oViewer.getCamera().orthoScale,
+    oViewer.getCamera().isPerspective
+    ]);
+    /*var camera = oViewer.getCamera();
     camera.x = x;
     camera.y = y;
     camera.z = z;
