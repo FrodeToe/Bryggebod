@@ -119,9 +119,9 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
   function orientation(event){
 
     //just for demo, rephrase the data
-    var x = parseInt(event.alpha); 
-    var y =  parseInt(event.beta) ;
-    var z =  parseInt(event.gamma) ;
+    var x = event.alpha/10; 
+    var y =  event.beta/10 ;
+    var z =  event.gamma/10 ;
 
 var camera = oViewer.getCamera();
 
