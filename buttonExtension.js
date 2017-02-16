@@ -123,7 +123,12 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
     var y =  parseInt(event.beta) ;
     var z =  parseInt(event.gamma) ;
 
-    alert('pos = ' + x + ' ' + y + ' ' + z );
+    var camera = oViewer.getCamera();
+    camera.x = x;
+    camera.y = y;
+    camera.z = z;
+    oViewer.applyCamera(camera);
+   /* alert('pos = ' + x + ' ' + y + ' ' + z );
 
     // display the value
     var thistext = x + ', '
@@ -138,7 +143,7 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
         //element ID has not been used by this demo yet. reserve for future
         var IoTJson = {elementID:'183911',GyroData:{alpha:x,beta:y,gamma:z}};
         socket.emit('au_Gyro',JSON.stringify(IoTJson)); 
-    }
+    }*/
 }
 
   function propCallback(data) {
