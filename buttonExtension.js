@@ -69,7 +69,13 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
         }
         else
         {
-            alert('Nothing Selected');
+            //Monitor Device Orientation
+            if(window.DeviceOrientationEvent){
+                window.addEventListener("deviceorientation", orientation, false); 
+
+            }else{
+                alert("DeviceOrientationEvent is not supported");
+            }
         }
       };
  
@@ -109,6 +115,29 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
  
     setTimeout(function () { toolbar.centerToolBar(); }, 100);
   }
+
+  function orientation(event){
+
+    //just for demo, rephrase the data
+    var x = parseInt(event.alpha); 
+    var y =  parseInt(event.beta) ;
+    var z =  parseInt(event.gamma) ;
+
+    // display the value
+    var thistext = x + ', '
+        + y + ', '
+        + z;
+    $('#gyrobig').text(thistext);
+
+    //avoid frequent emmit
+     var tol = 2;
+    if(Math.abs(r-lastr ) >tol|| Math.abs(g-lastg ) >tol || Math.abs(b-lastb ) >tol)
+    {
+        //element ID has not been used by this demo yet. reserve for future
+        var IoTJson = {elementID:'183911',GyroData:{alpha:x,beta:y,gamma:z}};
+        socket.emit('au_Gyro',JSON.stringify(IoTJson)); 
+    }
+}
 
   function propCallback(data) {
 
