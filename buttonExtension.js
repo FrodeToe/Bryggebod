@@ -119,7 +119,7 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
   function orientation(event){
 
 var camera = oViewer.getCamera();
-var controls = new THREE.DeviceOrientationControls( camera );
+//var controls = new THREE.DeviceOrientationControls( camera );
     //just for demo, rephrase the data
  /*   var x = event.alpha/10; 
     var y =  event.beta/10 ;
