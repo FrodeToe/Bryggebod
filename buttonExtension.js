@@ -11,6 +11,8 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
   var _viewer = viewer;
  
   var _this = this;
+
+  var originalTarget;
  
   _this.load = function () {
  
@@ -69,6 +71,8 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
         }
         else
         {
+          originalTarget = oViewer.getCamera().target;
+          var cam = oViewer.getCamera();
             //Monitor Device Orientation
             if(window.DeviceOrientationEvent){
                 window.addEventListener("deviceorientation", orientation, false); 
@@ -118,51 +122,38 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
 
   function orientation(event){
 
-var camera = oViewer.getCamera();
-//var controls = new THREE.DeviceOrientationControls( camera );
     //just for demo, rephrase the data
- /*   var x = event.alpha/10; 
-    var y =  event.beta/10 ;
-    var z =  event.gamma/10 ;
+    var x = parseInt(event.alpha); 
+    var y =  parseInt(event.beta) ;
+    var z =  parseInt(event.gamma) ;
+/*var axis = new THREE.Vector3(0,0,1);
+var vec = originalTarget;
+vec.applyAxisAngle ( axis, THREE.Math.degToRad(x) );
+*/
 
-var camera = oViewer.getCamera();
 
+    var cam = oViewer.getCamera();
+ var zee = new THREE.Vector3( 0, 0, 1 );
 
-  camera.position = new THREE.Vector3(x, y, z);
-  //oViewer.navigation.setWorldUpVector(camera.up);
- 
-  // This performs a smooth view transition (we might also use
-  // setView() to get there more directly)
- 
-  oViewer.utilities.transitionView(
-    camera.position, camera.target,
-    camera.fov, camera.up, camera.up, true, camera.target
-  );
+		var euler = new THREE.Euler();
 
-   /* oViewer.setViewFromArray([
-    camera.position.x,
-    camera.position.y,
-    camera.position.z,
-    x,
-    y,
-    z,
-    camera.up.x,
-    camera.up.y,
-    camera.up.z,
-    camera.aspect,
-    camera.fov,
-    camera.orthoScale,
-    camera.isPerspective
-    ]);
-    /*var camera = oViewer.getCamera();
-    camera.x = x;
-    camera.y = y;
-    camera.z = z;
-    oViewer.applyCamera(camera);
-   /* alert('pos = ' + x + ' ' + y + ' ' + z );
+		var q0 = new THREE.Quaternion();
+
+		var q1 = new THREE.Quaternion( - Math.sqrt( 0.5 ), 0, 0, Math.sqrt( 0.5 ) ); // - PI/2 around the x-axis
+//    oViewer.utilities.transitionView(cam.position,vec,cam.fov,cam.up,cam.up,false,cam.target);
+var euler = new THREE.Euler();
+//euler.set( THREE.Math.degToRad(event.alpha), THREE.Math.degToRad(event.beta), - THREE.Math.degToRad(event.gamma), 'XYZ' );
+euler.set( THREE.Math.degToRad(event.alpha), 0, 0, 'XYZ' );
+cam.rotation = euler;
+cam.quaternion.setFromEuler( euler );
+cam.quaternion.multiply( q1 ); // camera looks out the back of the device, not the top
+cam.quaternion.multiply( q0.setFromAxisAngle( zee, - event.orient ) ); // adjust for screen orientation
+
+oViewer.applyCamera(cam,false);
+   // alert('pos = ' + x + ' ' + y + ' ' + z );
 
     // display the value
-    var thistext = x + ', '
+   /* var thistext = x + ', '
         + y + ', '
         + z;
     $('#gyrobig').text(thistext);
