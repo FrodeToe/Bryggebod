@@ -22,13 +22,14 @@
     <script src="./Model/jquery-ui.min.js"></script> <!-- http://jqueryui.com/ -->
 
     <!-- Autodesk Forge Viewer -->
-    <link href="./Model/style.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v2.16.*" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  <script language="JavaScript" src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js?v=v2.13.*"></script>
-  <script language="JavaScript" src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v2.13.*"></script>
-    <script src="buttonExtension.js"></script>
     
+    <script language="JavaScript" src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js"></script>
+    <script language="JavaScript" src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v2.16.*"></script>
+    <script src="buttonExtension.js"></script>
+    <script src="./ISY.Extension.DeviceOrientation.js"></script>
+    <script src="./deviceorientationcontrol.js"></script>
 
     <!-- Our scripts -->
     <style>
@@ -119,9 +120,9 @@
             var options ={ 'docid': docs [0].path, env: 'Local' } ;
 
             var config3d = {
-            //extensions: ['buttonExtension','Autodesk.Viewing.WebVR'],
-            extensions: ['Autodesk.Viewing.WebVR'],
-            experimental: [ 'webVR_orbitModel' ]
+            extensions: ['buttonExtension'],
+            //extensions: ['Autodesk.Viewing.WebVR'],
+            //experimental: [ 'webVR_orbitModel' ]
             };
 
           //  oViewer =new Autodesk.Viewing.Viewer3D ($("#viewer") [0], config3d) ; // No toolbar
@@ -141,6 +142,8 @@
 			//oViewer.loadModel (options.docid) ;
 
             oViewer.start(options.docid);
+
+            oViewer.loadExtension('Autodesk.Viewing.ZoomWindow');
 
           //  oViewer.registerContextMenuCallback('MyAwesomeExtension',MyAwesomeExtension);
             
@@ -185,7 +188,7 @@
 
     <div class="clear">
         <hr />
-        <p>&#169; Copyright 2016 Øspenes Bryggebod. All rights reserved. </p>
+        <p>&#169; Copyright 2017 Øspenes Bryggebod. All rights reserved. </p>
     </div>
 
 </body>

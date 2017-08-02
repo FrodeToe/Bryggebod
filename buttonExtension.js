@@ -53,7 +53,7 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
       );
  
       // Assign an icon
-      button.icon.className = 'glyphicon glyphicon-thumbs-up';
+      button.icon.className = 'glyphicon glyphicon-globe';
       button.icon.style = 'font-size:29px;';
  
       // Set the tooltip
@@ -61,10 +61,13 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
       button.setToolTip('Info');
  
       // Only create a toggler for our button if it has an unclick operation
+
+      button.onClick = createToggler(button, click, unclick);
  
-      button.onClick = function () { 
+     // button.onClick = function () { 
+     //   oViewer.loadExtension('ISYExtensionDeviceOrientation',{});
         //alert('SKÅL!'); 
-        if (oViewer.getSelection().length > 0) {
+        /*if (oViewer.getSelection().length > 0) {
            var objSelected = oViewer.getSelection()[0];
            oViewer.getProperties(objSelected, propCallback, propErrorCallback);
            
@@ -80,8 +83,8 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
             }else{
                 alert("DeviceOrientationEvent is not supported");
             }
-        }
-      };
+        }*/
+      //};
  
       ctrlGroup.addControl(button);
 
@@ -118,6 +121,14 @@ Bryggebod.Extension.Toolbar = function (viewer, options) {
     // After a delay we'll center it on screen
  
     setTimeout(function () { toolbar.centerToolBar(); }, 100);
+  }
+
+  function click(){
+    oViewer.loadExtension('ISYExtensionDeviceOrientation',{});
+  }
+
+  function unclick(){
+    oViewer.unloadExtension('ISYExtensionDeviceOrientation',{});
   }
 
   function orientation(event){
