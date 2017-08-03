@@ -173,6 +173,8 @@
 
     /*************Move camera position ********************/
     function goToPoint() {
+        var a = oViewer.toolController.getActiveTool();
+        oViewer.toolController.activateTool("walk");
         oViewer.toolController.activateTool("bimwalk");
 
         var pos = new THREE.Vector3( -0.41472558816862765, -1.1945243219285295, 1.776640578728806 );
