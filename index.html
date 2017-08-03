@@ -171,6 +171,33 @@
             
         }) ;
 
+    /*************Move camera position ********************/
+    function goToPoint() {
+        oViewer.toolController.activateTool("bimwalk");
+
+        var pos = new THREE.Vector3( -0.41472558816862765, -1.1945243219285295, 1.776640578728806 );
+        var target = new THREE.Vector3( -1.549324079679689, -0.9789387937561167, 1.7252034844508097 );
+        oViewer.navigation.setPosition(pos);
+        oViewer.navigation.setTarget(target);
+        //set camera up correctly
+        oViewer.navigation.orientCameraUp();
+    }
+
+    function getCameraX() {
+            console.log(oViewer);
+            console.log(oViewer.navigation);
+            console.log("getCameraX");
+            console.log(oViewer.navigation.getCamera());
+            var c = oViewer.navigation.getCamera();
+            console.log("position");
+            console.log(c.position);
+            console.log("lookat");
+            console.log(c.target);
+            console.log("up");
+            console.log(c.up);
+
+        }
+
     </script>
 </head>
 
@@ -187,6 +214,7 @@
     </div>
 
     <div class="clear">
+        <input type="button" value="Go inside" onclick="goToPoint()">
         <hr />
         <p>&#169; Copyright 2017 Øspenes Bryggebod. All rights reserved. </p>
     </div>
