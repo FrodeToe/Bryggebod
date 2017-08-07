@@ -173,12 +173,13 @@
 
     /*************Move camera position ********************/
     function goToPoint() {
+
         var a = oViewer.toolController.getActiveTool();
         oViewer.toolController.activateTool("firstperson");
         oViewer.toolController.activateTool("bimwalk");
 
-        var pos = new THREE.Vector3( -0.41472558816862765, -1.1945243219285295, 1.776640578728806 );
-        var target = new THREE.Vector3( -1.549324079679689, -0.9789387937561167, 1.7252034844508097 );
+        var pos = new THREE.Vector3( -1.3606239312301267, -1.5792336377512346, 1.7766405787288058 );
+        var target = new THREE.Vector3( 0.04340607191702661, 4.3411775457837285, -0.36626602763160765 );
         oViewer.navigation.setPosition(pos);
         oViewer.navigation.setTarget(target);
         //set camera up correctly
